@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+    {% block main %}
+            <p>なかなか自炊を継続することが難しい大学生<br>
+                自炊をこれから始めようという大学生,<br>
+                節約のためには自炊が必要だと言う大学生<br>
+                のための自炊習慣化アプリ
+            </p>
+            
+            <p><a href="{% url 'post' %}">投稿する</a><br>
+            <p><a href="{% url 'mypage' %}">マイページへ</a></p>
+            <a href="{% url 'login' %}">ログインする</a></p>
+            <a href="{% url 'signup' %}">新規会員登録する</a></p>
+    {% endblock %}

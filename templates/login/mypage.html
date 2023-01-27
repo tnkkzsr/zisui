@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main %}
+        <h1>マイページ</h1>
+
+
+        <p><a href="{% url 'post' %}">投稿する</a><br>
+
+        <a href="{% url 'logout' %}">ログアウト</a></p>
+{% endblock %}
