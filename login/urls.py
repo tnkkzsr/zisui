@@ -5,7 +5,7 @@ from .views import Login,Louout,Mypage,Signup,LoginedIndex
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    
     path('login/',Login.as_view(), name="login"),
     path('logout/',Louout.as_view(), name= "logout"),
     path('mypage/',Mypage.as_view(), name= "mypage"),

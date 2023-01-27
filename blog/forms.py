@@ -5,5 +5,4 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = ZisuiPost
-
-        fields = ('image','title','author','ingredients','cost','howtocook','freetext')
+        fields = ('title','author','image','tag' ,'cost','ingredients','howtocook','freetext')

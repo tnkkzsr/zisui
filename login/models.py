@@ -1,14 +1,39 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser,UserManager
 
+Gradechoices = [
+    
+    ("大学1年", "大学1年"),
+    ("大学2年", "大学2年"),
+    ("大学3年", "大学3年"),
+    ("大学4年", "大学4年"),
+    ("大学院1年", "大学院1年"),
+    ("大学院2年", "大学院2年"),
+    ("社会人", "社会人"),
+    ("その他", "その他"),
+
+]
+
+Livingalonechoice = [
+    
+    ("1年", "1年"),
+    ("2年", "2年"),
+    ("3年", "3年"),
+    ("4年", "4年"),
+    ("5年", "5年"),
+    ("6年", "6年"),
+    ("7年以上", "7年以上"),
+
+]
+
 #独自のユーザーモデルを定義
 class User(AbstractBaseUser):
     
-    email = models.EmailField('Eメールアドレス', max_length=255, unique=True,)
+    email = models.EmailField('Eメールアドレス(ログイン時に使用）', max_length=255, unique=True,)
     username = models.CharField('ニックネーム', max_length=128,default="")
-    userimage = models.ImageField('画像',upload_to="images/", default="",blank = True, null = True)
-    years =  models.CharField('学年', max_length=128,default="大学○年")
-    living_alone = models.CharField('一人暮らし歴', max_length=128,default="年")
+    userimage = models.ImageField('プロフィール画像',upload_to="images/", default="",blank = True, null = True)
+    years =  models.CharField('学年', max_length=128,choices=Gradechoices,default="大学1年")
+    living_alone = models.CharField('一人暮らし歴', max_length=128,choices =Livingalonechoice,default="1年")
     staff = models.BooleanField(default=False) 
     admin = models.BooleanField(default=False) 
     active = models.BooleanField(default=True)
