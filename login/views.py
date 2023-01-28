@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView,LogoutView
-from django.views.generic import TemplateView,CreateView
+from django.views.generic import TemplateView,CreateView,DetailView,ListView
 from .forms import LoginForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import SignUpForm
 from django.urls import reverse_lazy
+from .models import User
 
 
 
@@ -20,11 +21,20 @@ class Louout(LogoutView):
 
 class Mypage(LoginRequiredMixin,TemplateView):
     template_name ="login/mypage.html"
+    context_object_name = "user_detail"
+    
+    
 
 class Signup(CreateView):
     template_name ="login/signup.html"
     form_class = SignUpForm
     success_url = reverse_lazy('mypage')
 
-class LoginedIndex(LoginRequiredMixin,TemplateView):
-    template_name = "login/logined_index.html"
+
+
+class UserListView(ListView):
+    model = User
+    context_object_name = "user_list"
+    template_name = "login/user_list.html"
+
+   

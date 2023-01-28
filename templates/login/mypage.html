@@ -2,13 +2,16 @@
 
 {% block main %}
         <h1>マイページ</h1>
+        <h2>あなたの自炊連続記録は9回です</h2>
 
-        <p>ユーザー情報、自炊歴などを表示（ユーザーモデルから持ってくる<br>
-                ユーザ情報の編集などもできるようにする
+        <tbody>
+                {{user_detail.username}}
+                
+        </tbody>
 
-        </p>
-
-        <p><a href="{% url 'post' %}">投稿する</a><br>
-
-        <a href="{% url 'logout' %}">ログアウト</a></p>
+        <p><a href="{% url 'index' %}">トップページへ</a></p>
+        <p><a href="{% url 'signup' %}">新規会員登録する</a></p>
+        <p><a href="{% url 'post-list' %}">記事一覧</a></p>
+        <p><a href="{% url 'post' %}">投稿する</a></p>
+        <p><a href="{% url 'logout' %}">ログアウト</a></p>
 {% endblock %}

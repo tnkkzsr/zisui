@@ -138,4 +138,4 @@ MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'login.User'
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'loginindex'
+LOGIN_REDIRECT_URL = 'index'

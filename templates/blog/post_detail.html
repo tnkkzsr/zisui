@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+    
+
+    <h1>{{post_detail.title}}</h1>
+        <p>画像：</p>
+        <img src="/media/images/IMG_5544.JPG" style="width:400px;"/>
+        <p>タグ</p>
+        {% for tags in post_detail.tag.all %}
+        <p>{{tags.name}}</p>
+        {% endfor %}
+        <p>投稿者：{{post_detail.author}}</p>
+        
+        <p>費用：{{post_detail.cost}}</p>
+        <p>材料：{{post_detail.ingredients}}</p>
+        <p>作り方：{{post_detail.howtocook}}</p>
+        <p>コメント：{{post_detail.freetext}}</p>
+
+    
+{% endblock %}
