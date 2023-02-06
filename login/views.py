@@ -22,6 +22,11 @@ class Louout(LogoutView):
 class Mypage(LoginRequiredMixin,TemplateView):
     template_name ="login/mypage.html"
     context_object_name = "user_detail"
+
+    def user_info(request):
+        user = request.user
+        
+        render(request,"login/mypage.html", {"user":user})
     
     
 
