@@ -10,7 +10,8 @@ class PostCreateView(LoginRequiredMixin,CreateView):
 
     template_name = "blog/postform.html"
     form_class = PostForm
-    success_url = reverse_lazy("postdone")
+    def get_success_url(self):
+            return reverse('post-detail', kwargs={'pk': self.object.pk})
 
 #投稿すると投稿完了ページに飛ぶビュー
 class PostdoneView(TemplateView):
