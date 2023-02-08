@@ -31,7 +31,7 @@ class User(AbstractBaseUser):
     
     email = models.EmailField('Eメールアドレス(ログイン時に使用）', max_length=255, unique=True,)
     username = models.CharField('ニックネーム', max_length=128,default="")
-    userimage = models.ImageField('プロフィール画像',upload_to="images/", default="",blank = True, null = True)
+    userimage = models.ImageField('プロフィール画像',upload_to="images/", default="")
     years =  models.CharField('学年', max_length=128,choices=Gradechoices,default="大学1年")
     living_alone = models.CharField('一人暮らし歴', max_length=128,choices =Livingalonechoice,default="1年")
     staff = models.BooleanField(default=False) 

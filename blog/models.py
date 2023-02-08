@@ -4,7 +4,7 @@ from zisui.settings import AUTH_USER_MODEL
 
 Cost_choices = [
 
-    ("費用を選択してください", "費用を選択してください"),
+    
     ("0~100円", "0~100円"),
     ("100~200円", "100~200円"),
     ("200~300円", "200~300円"),
@@ -32,26 +32,27 @@ class Tag(models.Model):
 
 class ZisuiPost(models.Model):
 
-    title = models.CharField('タイトル', max_length=100) 
+    
 
-    image = models.ImageField('画像',upload_to="images/",default="", blank = True, null = True)
+        title = models.CharField('タイトル', max_length=100) 
 
-    tag = models.ManyToManyField(Tag,verbose_name="タグ")
+        image = models.ImageField('画像',upload_to="images/",default="")
 
-    cost = models.CharField("費用", choices=Cost_choices,max_length=20,default="費用を選択してください")
+        tag = models.ManyToManyField(Tag,verbose_name="タグ")
 
-    ingredients = models.TextField('材料',max_length=128, default="材料を入力")
+        cost = models.CharField("費用", choices=Cost_choices,max_length=20)
 
-    cost = models.CharField("費用", choices=Cost_choices,max_length=20,default="費用を選択してください")
+        ingredients = models.TextField('材料',max_length=128, default="材料を入力")
+       
 
-    howtocook = models.TextField('作り方',default="作り方を入力" ,null=False)
+        howtocook = models.TextField('作り方',default="作り方を入力" ,null=False)
 
-    freetext = models.TextField('コメント',default="コメントを入力" ,blank = True, null = True)
+        freetext = models.TextField('コメント',default="コメントを入力" ,blank = True, null = True)
 
-    author = models.ForeignKey(User,
-                               verbose_name ="投稿者",
-                               on_delete=models.CASCADE)
+        author = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="投稿者", null=True)
 
-    def __str__(self):
-    	return self.title
+   
+
+        def __str__(self):
+    	    return self.title
 
