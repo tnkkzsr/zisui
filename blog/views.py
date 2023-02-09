@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView,CreateView,ListView,DetailView
+from django.views.generic import TemplateView,CreateView,ListView,DetailView,UpdateView,DeleteView
 from .models import ZisuiPost
 from .forms import PostForm
 from django.urls import reverse, reverse_lazy
@@ -32,6 +32,21 @@ class PostDetailView(DetailView):
     model = ZisuiPost
     context_object_name = "post_detail"
     template_name = "blog/post_detail.html"
+
+class PostUpdateView(LoginRequiredMixin,UpdateView):
+    model = ZisuiPost
+    form_class = PostForm
+    context_object_name = "post_detail"
+    template_name = "blog/update.html"
+    def get_success_url(self):
+        return reverse('post-detail', kwargs={'pk': self.object.pk})
+
+class PostDeleteView(LoginRequiredMixin,DeleteView):
+    model = ZisuiPost
+    context_object_name = "post_detail"
+    template_name ="blog/delete.html"
+    success_url = reverse_lazy("post-list")
+
 
 
 

@@ -5,12 +5,15 @@
     <h2>自炊記事一覧</h2>
     <table class="table">
       <thead>
-        <tr><th>料理名</th></tr>
+        <tr><th>料理名</th>
+            <th>投稿者</th>
+        </tr>
       </thead>
       <tbody>
         {% for post in post_list %}
         <tr>
             <td>{{ post.title }}</td>
+            <td>{{ post.author }}</td>
             <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
         </tr>
         {% endfor %}

@@ -9,6 +9,6 @@
         <form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}
-            <input type="submit" value="送信">
+            <input type="submit" value="投稿">
         </form>
     {% endblock %}

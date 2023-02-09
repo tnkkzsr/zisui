@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+<h1>投稿を削除しますか？</h1>
+<form method="post">
+  {% csrf_token %}
+  <p><input type="submit" class="btn btn-danger" value="削除"><br> <br>
+  <a class = "btn" href="{% url 'post-detail' post_detail.pk %} ">キャンセル</a></p>
+</form>
+
+
+  
+{% endblock %}
