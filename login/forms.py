@@ -18,4 +18,18 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'userimage','years','living_alone','email')
+
+class PassowordUpdateForm(SignUpForm):
+    
+    class Meta:
+        model = User
+        fields = ('email',)
+
+
+class UserUpdateForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = ('username', 'userimage','years','living_alone')
+    
     

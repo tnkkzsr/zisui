@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.views import LoginView,LogoutView
-from django.views.generic import TemplateView,CreateView,DetailView,ListView
+from django.views.generic import TemplateView,CreateView,DetailView,ListView,UpdateView
 from .forms import LoginForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import SignUpForm
-from django.urls import reverse_lazy
+from .forms import SignUpForm,UserUpdateForm,PassowordUpdateForm
+from django.urls import reverse_lazy,reverse
 from .models import User
 
 
@@ -22,7 +22,6 @@ class Louout(LogoutView):
 class Mypage(LoginRequiredMixin,TemplateView):
     template_name ="login/mypage.html"
     context_object_name = "user_detail"
-
     def user_info(request):
         user = request.user
         
@@ -37,9 +36,35 @@ class Signup(CreateView):
 
 
 
+
+#ユーザー情報を更新するためのビュー
+class UserUpdateView (UpdateView):
+    model = User
+    form_class = UserUpdateForm
+    template_name = "login/user_update.html"
+
+    def user_info(request):
+        user = request.user
+        render(request,"login/user_upadate.html", {"user":user})
+
+    def get_success_url(self):
+        return reverse('mypage')
+
+#パスワード、メールアドレスを更新するためのビュー
+class PasswordUpdateView (UpdateView):
+    model = User
+    form_class = PassowordUpdateForm
+    template_name = "login/password_update.html"
+
+    def user_info(request):
+        user = request.user
+        render(request,"login/user_upadate.html", {"user":user})
+
+    def get_success_url(self):
+        return reverse('mypage')
+   
+
 class UserListView(ListView):
     model = User
     context_object_name = "user_list"
     template_name = "login/user_list.html"
-
-   

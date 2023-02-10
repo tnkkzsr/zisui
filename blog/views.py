@@ -18,9 +18,6 @@ class PostCreateView(LoginRequiredMixin,CreateView):
     def get_success_url(self):
             return reverse('post-detail', kwargs={'pk': self.object.pk})
 
-#投稿すると投稿完了ページに飛ぶビュー
-class PostdoneView(TemplateView):
-    template_name = "blog/postdone.html"
 
 #投稿一覧ページに対するビュー
 class PostListView(ListView):
@@ -37,7 +34,7 @@ class PostUpdateView(LoginRequiredMixin,UpdateView):
     model = ZisuiPost
     form_class = PostForm
     context_object_name = "post_detail"
-    template_name = "blog/update.html"
+    template_name = "blog/post-update.html"
     def get_success_url(self):
         return reverse('post-detail', kwargs={'pk': self.object.pk})
 

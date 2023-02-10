@@ -37,6 +37,8 @@ class User(AbstractBaseUser):
     staff = models.BooleanField(default=False) 
     admin = models.BooleanField(default=False) 
     active = models.BooleanField(default=True)
+    zisui_count = models.CharField("総自炊回数",max_length=128,default="0")
+    consecutive_zisui_count = models.CharField("総自炊回数",max_length=128,default="0")
 
     
     USERNAME_FIELD = 'email'

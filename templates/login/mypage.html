@@ -2,17 +2,19 @@
 
 {% block main %}
         <h1>{{user.username}}さんのマイページ</h1>
-        <h2>あなたの自炊記録：</h2>
-        <p>総自炊回数：回</p>
-        <p>連続自炊回数：回</p>
-        <p><a href = "">投稿なしで自炊をカウントする</a></p>
+        <h2>あなたの自炊記録</h2>
+        <p>総自炊回数：{{user.zisui_count}}回</p>
+        <p>連続自炊回数：{{user.consecutive_zisui_count}}回</p>
+        <p><a href = "{% url 'post' %}">自炊記録をする</a></p>
 
-
+        
         <h4>プロフィール情報</h4>
         
-        <img src="{{user.userimage.url}}" style="width:400px;"/>
+        <p><img src="{{user.userimage.url}}" style="width:400px;"/></p>
         <p>学年：{{user.years}}</p>
         <p>一人暮らし歴{{user.living_alone}}</p>
+        <p><a href = "{% url 'user-update' user.pk %}">プロフィール情報を編集をする</a></p>
+
 
         <h2>あなたが投稿した自炊記事一覧</h2>
         <table class="table">
@@ -39,7 +41,6 @@
         
 
         <p><a href="{% url 'index' %}">トップページへ</a></p>
-        <p><a href="{% url 'signup' %}">新規会員登録する</a></p>
         <p><a href="{% url 'post-list' %}">記事一覧</a></p>
         <p><a href="{% url 'post' %}">投稿する</a></p>
         <p><a href="{% url 'logout' %}">ログアウト</a></p>
