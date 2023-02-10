@@ -47,6 +47,10 @@ class PostDeleteView(LoginRequiredMixin,DeleteView):
     template_name ="blog/delete.html"
     success_url = reverse_lazy("post-list")
 
+class MypageListView(ListView):
+    model = ZisuiPost
+    context_object_name = "post_list"
+    template_name = "login/mypage.html"
 
 
 

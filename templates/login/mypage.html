@@ -7,6 +7,28 @@
         <p>学年：{{user.years}}</p>
         <p>一人暮らし歴{{user.living_alone}}</p>
 
+        <h2>あなたが投稿した自炊記事一覧</h2>
+        <table class="table">
+        <thead>
+                <tr><th>料理名</th>
+                <th>投稿者</th>
+                </tr>
+        </thead>
+        <tbody>
+        {% for post in post_list %}
+        
+
+        <tr>
+            <td>{{ post.title }}</td>
+            <td>{{ post.author }}</td>
+            <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
+        </tr>
+
+        
+        {% endfor %}
+      </tbody>
+    </table>
+
         
 
         <p><a href="{% url 'index' %}">トップページへ</a></p>
