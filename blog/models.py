@@ -32,31 +32,21 @@ class Tag(models.Model):
 
 class ZisuiPost(models.Model):
 
-    
-
         title = models.CharField('タイトル', max_length=100) 
 
         image = models.ImageField('画像',upload_to="images/",default="")
 
-        tag = models.ManyToManyField(Tag,verbose_name="タグ")
+        tag = models.ManyToManyField(Tag,verbose_name="タグ",blank=False,null=False)
 
         cost = models.CharField("費用", choices=Cost_choices,max_length=20)
 
-        ingredients = models.TextField('材料',max_length=128, default="材料を入力")
-       
 
-        howtocook = models.TextField('作り方',default="作り方を入力" ,null=False)
-
-        freetext = models.TextField('コメント',default="コメントを入力" ,blank = True, null = True)
+        freetext = models.TextField('説明',default="" ,blank = True, null = True)
 
         author = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="投稿者", null=True)
 
         created = models.DateTimeField("作成日",auto_now_add=True,editable=False,blank=False,null=False)
-        updated = models.DateTimeField(
-        auto_now=True,
-        editable=False,
-        blank=True,
-        null=True)
+        updated = models.DateTimeField(auto_now=True,editable=False,blank=True,null=True)
 
    
 

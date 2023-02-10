@@ -2,7 +2,14 @@
 
 {% block main %}
         <h1>{{user.username}}さんのマイページ</h1>
-        <h2>プロフィール情報</h2>
+        <h2>あなたの自炊記録：</h2>
+        <p>総自炊回数：回</p>
+        <p>連続自炊回数：回</p>
+        <p><a href = "">投稿なしで自炊をカウントする</a></p>
+
+
+        <h4>プロフィール情報</h4>
+        
         <img src="{{user.userimage.url}}" style="width:400px;"/>
         <p>学年：{{user.years}}</p>
         <p>一人暮らし歴{{user.living_alone}}</p>
