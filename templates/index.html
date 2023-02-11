@@ -7,10 +7,28 @@
                 のための自炊習慣化アプリ
             </p>
             
-            <p>ここに最新記事、各ユーザーの自炊回数などを出せるようにする</p>
+            <h2>最近の投稿一覧</h2>
+            <table class="table">
+            <thead>
+                <tr><th>料理名</th>
+                    <th>投稿者</th>
+                    <th>投稿日</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in post_list %}
+                <tr>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.author }}</td>
+                    <td>{{ post.created }}</td>
+                    <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
 
-            <p><a href="{% url 'post' %}">投稿する</a><br>
-            <a href="{% url 'mypage' %}">マイページへ</a><br>
+            <a href="{% url 'post' %}">投稿する</a><br>
+            <a href="{% url 'mypage' %}">マイページ</a><br>
             <a href="{% url 'login' %}">ログインする</a><br>
             <a href="{% url 'signup' %}">新規会員登録する</a><br>
             <a href="{% url 'post-list' %}">記事一覧</a></p><br>

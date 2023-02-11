@@ -8,7 +8,7 @@
         <p>投稿日：{{post_detail.created}}</p>
         <p>更新日：{{post_detail.updated}}</p>
         <p>画像：</p>
-        <img src="{{post_detail.image.url}}" style="width:400px;"/>
+        <p><img src="{{post_detail.image.url}}" style="width:400px;"/></p>
         
         <p>タグ：
         {% for tags in post_detail.tag.all %}
@@ -16,13 +16,10 @@
         {% endfor %}
         <p>投稿者：{{post_detail.author}}</p>
         
-        <p>費用：{{post_detail.cost}}</p>
-        <p>材料：{{post_detail.ingredients}}</p>
-        <p>作り方：{{post_detail.howtocook}}</p>
         <p>コメント：{{post_detail.freetext}}</p>
 
-        <p><a class='btn' href="{% url 'post-update' post_detail.pk %}">投稿を編集</a></p>
-        <p><a class='btn' href="{% url 'post-delete' post_detail.pk %}">投稿を削除</a></p>
+        <p><a  href="{% url 'post-update' post_detail.pk %}">投稿を編集</a></p>
+        <p><a  href="{% url 'post-delete' post_detail.pk %}">投稿を削除</a></p>
         <p><a  href="{% url 'post-list'%}">一覧へ戻る</a></p>
         
 

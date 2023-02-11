@@ -6,14 +6,18 @@
     <table class="table">
       <thead>
         <tr><th>料理名</th>
+            <th>画像</th>
             <th>投稿者</th>
+            <th>投稿日</th>
         </tr>
       </thead>
       <tbody>
         {% for post in post_list %}
         <tr>
             <td>{{ post.title }}</td>
+            <td><img src="{{post.image.url}}" style="width:40px;"/></td>
             <td>{{ post.author }}</td>
+            <td>{{ post.created }}</td>
             <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
         </tr>
         {% endfor %}

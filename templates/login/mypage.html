@@ -4,7 +4,7 @@
         <h1>{{user.username}}さんのマイページ</h1>
         <h2>あなたの自炊記録</h2>
         <p>総自炊回数：{{user.zisui_count}}回</p>
-        <p>連続自炊回数：{{user.consecutive_zisui_count}}回</p>
+        <p>連続自炊日数：{{user.consecutive_zisui_count}}回</p>
         <p><a href = "{% url 'post' %}">自炊記録をする</a></p>
 
         
@@ -24,14 +24,15 @@
                 </tr>
         </thead>
         <tbody>
-        {% for post in post_list %}
-        
 
-        <tr>
-            <td>{{ post.title }}</td>
-            <td>{{ post.author }}</td>
-            <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
-        </tr>
+        {% for post in post_list %}
+               
+                        <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.author }}</td>
+                        <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
+                        </tr>
+               
 
         
         {% endfor %}

@@ -40,7 +40,6 @@ class ZisuiPost(models.Model):
 
         cost = models.CharField("費用", choices=Cost_choices,max_length=20)
 
-
         freetext = models.TextField('説明',default="" ,blank = True, null = True)
 
         author = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="投稿者", null=True)
