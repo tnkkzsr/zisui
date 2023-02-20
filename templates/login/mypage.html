@@ -2,9 +2,9 @@
 
 {% block main %}
         <h1>{{user.username}}さんのマイページ</h1>
-        <h2>あなたの自炊記録</h2>
-        <p>総自炊回数：{{user.zisui_count}}回</p>
-        <p>連続自炊日数：{{user.consecutive_zisui_count}}回</p>
+        <h2>通算自炊回数：{{user.zisui_count}}回</h2>
+        
+        <h2>連続自炊日数：{{user.consecutive_zisui_count}}回</p></h2>
         <p><a href = "{% url 'post' %}">自炊記録をする</a></p>
 
         
@@ -20,6 +20,7 @@
         <table class="table">
         <thead>
                 <tr><th>料理名</th>
+                        <th>画像</th>
                 <th>投稿者</th>
                 </tr>
         </thead>
@@ -29,8 +30,9 @@
                
                         <tr>
                         <td>{{ post.title }}</td>
+                        <td><img src="{{post.image.url}}" style="width: 100px;"/></td>
                         <td>{{ post.author }}</td>
-                        <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
+                        <td><a href="{% url 'mypost-detail' post.pk%}">詳細</a></td>
                         </tr>
                
 

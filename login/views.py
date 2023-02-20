@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import SignUpForm,UserUpdateForm,PassowordUpdateForm
 from django.urls import reverse_lazy,reverse
 from .models import User
+from blog.models import ZisuiPost
 
 
 
@@ -27,15 +28,10 @@ class Mypage(LoginRequiredMixin,TemplateView):
         
         render(request,"login/mypage.html", {"user":user})
     
-    
-
 class Signup(CreateView):
     template_name ="login/signup.html"
     form_class = SignUpForm
     success_url = reverse_lazy('mypage')
-
-
-
 
 #ユーザー情報を更新するためのビュー
 class UserUpdateView (UpdateView):
@@ -63,8 +59,19 @@ class PasswordUpdateView (UpdateView):
     def get_success_url(self):
         return reverse('mypage')
    
-
+#ユーザー一覧を表示するビュー
 class UserListView(ListView):
     model = User
-    context_object_name = "user_list"
     template_name = "login/user_list.html"
+    context_object_name = "user_list"
+
+#ユーザー詳細を表示するビュー
+class UserDetailView(DetailView):
+    model = User
+    template_name = "login/profile.html"
+    context_object_name = "user_detail"
+
+
+
+    
+

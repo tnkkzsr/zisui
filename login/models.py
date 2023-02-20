@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser,UserManager
 
+
 Gradechoices = [
     
     ("大学1年", "大学1年"),
@@ -39,6 +40,7 @@ class User(AbstractBaseUser):
     active = models.BooleanField(default=True)
     zisui_count = models.IntegerField("総自炊回数",default=0)
     consecutive_zisui_count = models.IntegerField("総自炊回数",default=0)
+    
 
     
     USERNAME_FIELD = 'email'

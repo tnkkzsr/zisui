@@ -10,7 +10,6 @@ from datetime import timezone
 #投稿を作成するためのビュー
 class PostCreateView(LoginRequiredMixin,CreateView):
 
-    
     template_name = "blog/postform.html"
     form_class = PostForm
     
@@ -18,8 +17,8 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
         
-    def get_success_url(self):
-        #自炊カウントを増やす処理
+     #自炊カウントを増やす処理
+    def get_success_url(self): 
         post_user = self.request.user
         post_user.zisui_count +=1
         
@@ -35,6 +34,7 @@ class PostListView(ListView):
     context_object_name = "post_list"
     template_name = "blog/post_list.html"
 
+#投稿詳細（編集不可）のページに飛ぶビュー
 class PostDetailView(DetailView):
     model = ZisuiPost
     context_object_name = "post_detail"
@@ -54,7 +54,7 @@ class PostDeleteView(LoginRequiredMixin,DeleteView):
     template_name ="blog/delete.html"
     success_url = reverse_lazy("post-list")
 
-#マイページに自分が投稿した自炊記録を表示させるビュー
+#マイページに自分（現在ログインしているユーザー）が投稿した自炊記録を表示させるビュー
 class MypageListView(ListView):
 
     model = ZisuiPost
@@ -62,6 +62,15 @@ class MypageListView(ListView):
         return super().get_queryset().filter(author__username=self.request.user.username)
     context_object_name = "post_list"
     template_name = "login/mypage.html"
+
+#投稿詳細（編集可能）に飛ぶビュー
+class MyPostDetailView(DetailView):
+    model = ZisuiPost
+    context_object_name = "post_detail"
+    template_name = "blog/mypost_detail.html"
+
+#ユーザー詳細に、そのユーザーが投稿した自炊記録を一覧表示させるビュー
+
 
 
 

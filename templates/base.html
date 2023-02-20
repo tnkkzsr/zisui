@@ -1,4 +1,4 @@
-{% load django_bootstrap5 %}
+{% load static %}
 
 <!doctype HTML>
 <html>
@@ -8,7 +8,10 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/">自炊アプリ</a>
+
+            <a href="{% url 'login' %}"></a>
         </nav>
+        
         <div class="container mt-4">
         {% block main %}
         <p>※コンテンツがありません。</p>

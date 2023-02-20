@@ -7,20 +7,19 @@
     <h1>{{post_detail.title}}</h1>
         <p>投稿日：{{post_detail.created}}</p>
         <p>更新日：{{post_detail.updated}}</p>
-        <p>画像：</p>
+        
         <p><img src="{{post_detail.image.url}}" style="width:400px;"/></p>
         
         <p>タグ：
         {% for tags in post_detail.tag.all %}
         {{tags.name}}</p>
         {% endfor %}
-        <p>投稿者：{{post_detail.author}}</p>
+        <p>投稿者：<a href="{% url 'user-detail' post_detail.author.pk %}">{{post_detail.author}}</a></p>
         
         <p>コメント：{{post_detail.freetext}}</p>
 
-        <p><a  href="{% url 'post-update' post_detail.pk %}">投稿を編集</a></p>
-        <p><a  href="{% url 'post-delete' post_detail.pk %}">投稿を削除</a></p>
-        <p><a  href="{% url 'post-list'%}">一覧へ戻る</a></p>
+        
+        <p><a  href="{% url 'index'%}">トップページへ戻る</a></p>
         
 
     
