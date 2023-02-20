@@ -3,6 +3,8 @@
 {% block main %}
 
 <body>
+
+    <h1>新規会員登録をして自炊記録を開始する</h1>
     <div>
         <form method="post">{% csrf_token %}
         {{ form.as_p }}
