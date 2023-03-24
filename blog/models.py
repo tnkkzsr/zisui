@@ -1,6 +1,8 @@
 from django.db import models
 from login.models import User
 from zisui.settings import AUTH_USER_MODEL
+import datetime
+from zoneinfo import ZoneInfo
 
 Cost_choices = [
 
@@ -32,9 +34,9 @@ class Tag(models.Model):
 
 class ZisuiPost(models.Model):
 
-        title = models.CharField('タイトル', max_length=100) 
+        title = models.CharField('料理名', max_length=100) 
 
-        image = models.ImageField('画像',upload_to="images/",default="")
+        image = models.ImageField('画像',upload_to="images/",default="images/1087_01.jpg")
 
         tag = models.ManyToManyField(Tag,verbose_name="タグ",blank=False,null=False)
 
@@ -44,8 +46,9 @@ class ZisuiPost(models.Model):
 
         author = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="投稿者", null=True)
 
-        created = models.DateTimeField("作成日",auto_now_add=True,editable=False,blank=False,null=False)
-        updated = models.DateTimeField(auto_now=True,editable=False,blank=True,null=True)
+        created = models.DateTimeField("作成日",editable=True,blank=False,null=False, default=datetime.datetime.now(ZoneInfo("Asia/Tokyo")))
+        
+        updated = models.DateTimeField("更新日",editable=True,blank=True,null=True,default=datetime.datetime.now(ZoneInfo("Asia/Tokyo")))
 
    
 

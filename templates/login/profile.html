@@ -6,45 +6,70 @@
         <h2><p>通算自炊回数：{{user_detail.zisui_count}}回</p></h2>
         
         <h2><p>連続自炊日数：{{user_detail.consecutive_zisui_count}}回</p></h2>
-        <p><a href = "{% url 'post' %}">自炊記録をする</a></p>
+        
 
         
         <h4>プロフィール情報</h4>
         
         <p><img src="{{user_detail.userimage.url}}" style="width:400px;"/></p>
         <p>学年：{{user_detail.years}}</p>
-        <p>一人暮らし歴{{user_detail.living_alone}}</p>
+        <p>一人暮らし歴：{{user_detail.living_alone}}</p>
+        <p>最後の投稿日：{{user_detail.recent_created_at}}</p>
+
 
         <h2>{{user_detail.username}}さんが投稿した自炊記事一覧</h2>
 
         <table class="table">
                 <thead>
-                        <tr><th>料理名</th>
-                        <th>投稿者</th>
+                        <tr>
+                                <th>料理名</th>
+                                <th>画像</th>
+                                <th>投稿日</th>
+                                <th>詳細</th>
                         </tr>
                 </thead>
+
                 <tbody>
-        
                 {% for post in post_list %}
-                       
+                        
+               
+                                <tr>
+                                        <td>{{ post.title }}</td>
+                                        <td><img src="{{post.image.url}}" style="width: 100px;"/></td>
+                                        <td>{{ post.created }}</td>
+                                        <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
+                                </tr>
+
+        
+                {% endfor %}
+                </tbody>
+        </table>
+        
+        <h2>{{user_detail.username}}さんの自炊履歴</h2>
+
+
+        <table class="table">
+        <thead>
+                <tr>
+                        <th>料理名</th>
+                        <th>日付</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for post in post_record %}
+                
                                 <tr>
                                 <td>{{ post.title }}</td>
-                                <td>{{ post.author }}</td>
-                                <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
+                                
+                                <td>{{ post.created }}</td>
+                                
                                 </tr>
-                       
-        
+                
+
                 
                 {% endfor %}
-              </tbody>
-            </table>
-        
-
-
-        
-
-        
-    
+        </tbody>
+        </table>
 
         
 

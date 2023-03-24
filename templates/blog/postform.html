@@ -6,6 +6,9 @@
 
         
         <p>あなたが自炊した料理をみんなに共有しましょう！</p>
+
+        <p><a href="{% url 'post-done' %}">簡単に自炊記録だけ行う！</a>(料理名を入力するだけで自炊記録を行うことができます）</p>
+
         <form action="{% url 'post' %}" method="POST" enctype="multipart/form-data">
             {{ form.as_p }}
             {% csrf_token %}

@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser,UserManager
+from django.utils import timezone
+import datetime
+
+
 
 
 Gradechoices = [
@@ -40,6 +44,7 @@ class User(AbstractBaseUser):
     active = models.BooleanField(default=True)
     zisui_count = models.IntegerField("総自炊回数",default=0)
     consecutive_zisui_count = models.IntegerField("総自炊回数",default=0)
+    recent_created_at = models.DateTimeField("最後の投稿日",editable=True,blank=False,null=False, default=datetime.date.today())
     
 
     

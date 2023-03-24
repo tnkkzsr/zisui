@@ -10,9 +10,8 @@ urlpatterns = [
     path('mypost-detail/<int:pk>/', views.MyPostDetailView.as_view(), name="mypost-detail"),
     path('post-update/<int:pk>/', views.PostUpdateView.as_view(), name="post-update"),
     path('delete/<int:pk>/', views.PostDeleteView.as_view(), name="post-delete"),
-    path('mypage/',views.MypageListView.as_view(), name= "mypage"),
-    
-
+    path('post-done',views.ZisuiRecordView.as_view(), name = "post-done"),
+   
 
     
 ]

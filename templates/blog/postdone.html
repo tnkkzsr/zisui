@@ -1,6 +1,17 @@
 {% extends "base.html" %}
 
     {% block main %}
-        <p>記事を投稿できました</p>
+        <h1>自炊記録をしてよろしいですか？</h1>
+        <p>自炊した料理名を入力してください</p>
+
+        <form action="{% url 'post-done' %}" method="POST" enctype="multipart/form-data">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="投稿">
+        </form>
+        
+
+        <!-- <p><a href="">はい</a></p>
+        <p><a href="{% url 'post' %}">キャンセル</a></p> -->
         
     {% endblock %}
