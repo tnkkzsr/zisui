@@ -48,8 +48,7 @@ class ZisuiPost(models.Model):
 
         created = models.DateTimeField("作成日",editable=True,blank=False,null=False, default=datetime.datetime.now(ZoneInfo("Asia/Tokyo")))
         
-        updated = models.DateTimeField("更新日",editable=True,blank=True,null=True,default=datetime.datetime.now(ZoneInfo("Asia/Tokyo")))
-
+        
    
 
         def __str__(self):
