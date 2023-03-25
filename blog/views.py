@@ -42,25 +42,6 @@ class ZisuiRecordView(LoginRequiredMixin,CreateView):
     def get_success_url(self): 
         post_user = self.request.user #自炊カウントを増やす処理
         post_user.zisui_count +=1  
-
-        #連続処理
-        # now_date = self.object.created#datetime.datetime.now(ZoneInfo("Asia/Tokyo")) #現在の日時
-        # second_recent_created_at = post_user.recent_created_at #投稿処理を行う前の最新の投稿日時
-        # second_recent_created_at_day = second_recent_created_at.day #投稿処理を行う前の最新の投稿日の日付
-        # td= now_date.day - second_recent_created_at_day #投稿を行った現在の日付と、投稿処理を行う前の最新の投稿日の日付の差
-        # print(second_recent_created_at)
-        # print(now_date)
-        # print(td)
-        # if  td==1:
-        #      post_user.consecutive_zisui_count += 1 
-
-
-        #最後の投稿日を更新
-        # recent_created_at = ZisuiPost.objects.values("created").filter(author__username = post_user.username).order_by("created").last()
-        # post_user.recent_created_at = recent_created_at["created"]
-        # print(post_user.recent_created_at.day)
-
-
         post_user.save()
 
         return reverse('mypage')

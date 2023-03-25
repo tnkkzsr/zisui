@@ -13,7 +13,7 @@
         <p><img src="{{user.userimage.url}}" style="width:400px;"/></p>
         <p>学年：{{logined_user.years}}</p>
         <p>一人暮らし歴：{{logined_user.living_alone}}</p>
-        <p>最後の投稿日：{{logined_user.recent_created_at}}</p>
+        <p>最後に自炊をした日：{{logined_user.recent_created_at|date:"Y-m-d" }}</p>
         <p><a href = "{% url 'user-update' user.pk %}">プロフィール情報を編集をする</a></p>
 
         <h2>あなたの自炊履歴</h2>
@@ -23,7 +23,7 @@
                 <thead>
                         <tr>
                                 <th>料理名</th>
-                                <th>日付</th>
+                                <th>自炊した日</th>
                                 <th></th>
                         </tr>
                 </thead>
@@ -33,7 +33,7 @@
                                         <tr>
                                         <td>{{ post.title }}</td>
                                         
-                                        <td>{{ post.created }}</td>
+                                        <td>{{ post.created|date:"Y-m-d"  }}</td>
                                         <td><a href="{% url 'post-delete' post.pk%}">削除</a></td>
                                         </tr>
                         

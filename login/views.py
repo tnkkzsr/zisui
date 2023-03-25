@@ -36,67 +36,64 @@ class MypageView(LoginRequiredMixin,View):
         post_record_list =ZisuiPost.objects.filter(author__username=self.request.user.username).order_by("created") #作られのが早い順に並べたもの
         post_record =ZisuiPost.objects.filter(author__username=self.request.user.username).order_by("-created")#作られたのが遅い順に並べたもの
         post_list = ZisuiPost.objects.filter(author__username=self.request.user.username).exclude(image = "images/1087_01.jpg").order_by("created")
+        print(post_record)
 
+       
         #最後に自炊した日の取り出し
         recent_created_at = ZisuiPost.objects.values("created").filter(author__username = user.username).order_by("created").last()
         user.recent_created_at = recent_created_at["created"]
         print("最後に自炊した日",user.recent_created_at)
 
-        #連続自炊日数処理
-        now = make_aware(datetime.datetime.now())
-        td = now - recent_created_at['created'] #現在の時間と最後に自炊した日の差分
+        if len(post_record)>1:
+            #連続自炊日数処理
+            now = make_aware(datetime.datetime.now())
+            today =datetime.date.today().day-1
+            print(today)
         
-        print("現在と最後に自炊した日の差分",td.days)
-        
-        if td.days >=2:
-            user.consecutive_zisui_count =0
-        else:
-            new_post_date = post_record[0].created #最後に自炊記録を記録した日
-            print("最後の記録日",new_post_date)
-            print("")
-            count = 0
-            consecutive_zisui_count =0
-            for post in post_record:
-                print("取り出した投稿",post,post.created)
-                if count !=0:
-                    td_post = new_post_date.day - post.created.day
-                    print("時差",td_post)
-                    if td_post ==1:
-                        consecutive_zisui_count  +=1
-                        print("連続自炊日数追加")
-                elif count == 0:
-                    print("比較なし")
-                    
-                new_post_date = post.created
-                print(str(count)+"番目の最後の記録日:",new_post_date)
-                print("")
-                count +=1
+            td = today - recent_created_at['created'].day #現在の時間と最後に自炊した日の差分
+            print("現在と最後に自炊した日の差分",td)
             
-            print("連続カウント",consecutive_zisui_count)
-            if consecutive_zisui_count >0: #連続カウントが1以上なら1足したものが連続日数になる
-                consecutive_zisui_count +=1
-
-            user.consecutive_zisui_count = consecutive_zisui_count
-
+            new_post_date = post_record[0].created#最後に自炊記録を記録した日
+            if td >=2:
+                user.consecutive_zisui_count =0
+            elif new_post_date.day - post_record[1].created.day >1:
+                print(new_post_date.day - post_record[1].created.day)
+                user.consecutive_zisui_count =0
+            else:  
+                count = 0
+                consecutive_zisui_count =0
+                for post in post_record:
+                    print("取り出した投稿",post,post.created)
+                    if count !=0:
+                        td_post = new_post_date.day - post.created.day
+                        print("時差",td_post)
+                        if td_post ==1:
+                            consecutive_zisui_count  +=1
+                            print("連続自炊日数追加")
+                    elif count == 0:
+                        print("比較なし")
+                        
+                    new_post_date = post.created
+                    print(str(count)+"番目の最後の記録日:",new_post_date)
+                    print("")
+                    count +=1
                 
-                
-                
+                print("連続カウント",consecutive_zisui_count)
+                if consecutive_zisui_count >0: #連続カウントが1以上なら1足したものが連続日数になる
+                    consecutive_zisui_count +=1
 
-
-        #連続日数のリセット処理
-        # now_date = datetime.datetime.now(ZoneInfo("Asia/Tokyo"))
-        # dt = now_date.day-user.recent_created_at.day 
-        # print(dt)
-        # if dt >=2:
-        #     user.consecutive_zisui_count =0
-
+                user.consecutive_zisui_count = consecutive_zisui_count
+        else:
+            print("投稿がありません")
 
         context = {
-           "post_record":post_record_list,
-           "post_list":post_list,
-            "logined_user":user,
+                "logined_user":user,
+            }
 
-        }
+
+        if len(post_record)>0:
+            context["post_record"] = post_record_list
+            context["post_list"] = post_list
 
         return render(request, "login/mypage.html",context)
    
@@ -146,17 +143,61 @@ class UserDetailView(View):
     def get(self, request,*args, **kwargs):
         user_detail = User.objects.get(pk=self.kwargs['pk'])
         
+        post_record_list =ZisuiPost.objects.filter(author__username=user_detail.username).order_by("created") #作られのが早い順に並べたもの
+        post_record =ZisuiPost.objects.filter(author__username=user_detail.username).order_by("-created")#作られたのが遅い順に並べたもの
+        post_list = ZisuiPost.objects.filter(author__username=user_detail.username).exclude(image = "images/1087_01.jpg").order_by("created")
+
         recent_created_at = ZisuiPost.objects.values("created").filter(author__username = user_detail.username).order_by("created").last()
         user_detail.recent_created_at = recent_created_at["created"]
-        post_list = ZisuiPost.objects.filter(author__username = user_detail.username).exclude(image = "images/1087_01.jpg")
-        post_record = ZisuiPost.objects.filter(author__username=user_detail.username)
 
+        #連続自炊日数処理
+        if len(post_record)>1:
+            now= make_aware(datetime.datetime.now())
+            today =datetime.date.today().day-1
+            print(today)
         
+            td = today - recent_created_at['created'].day #現在の時間と最後に自炊した日の差分
+            print("現在と最後に自炊した日の差分",td)
+            
+            new_post_date = post_record[0].created#最後に自炊記録を記録した日
+            
+            if td >=2:
+                user_detail.consecutive_zisui_count =0
+            elif new_post_date.day - post_record[1].created.day >1:
+                print(new_post_date.day - post_record[1].created.day)
+                user_detail.consecutive_zisui_count =0
+            else:  
+                count = 0
+                consecutive_zisui_count =0
+                for post in post_record:
+                    print("取り出した投稿",post,post.created)
+                    if count !=0:
+                        td_post = new_post_date.day - post.created.day
+                        print("時差",td_post)
+                        if td_post ==1:
+                            consecutive_zisui_count  +=1
+                            print("連続自炊日数追加")
+                    elif count == 0:
+                        print("比較なし")
+                        
+                    new_post_date = post.created
+                    print(str(count)+"番目の最後の記録日:",new_post_date)
+                    print("")
+                    count +=1
+                
+                print("連続カウント",consecutive_zisui_count)
+                if consecutive_zisui_count >0: #連続カウントが1以上なら1足したものが連続日数になる
+                    consecutive_zisui_count +=1
+
+                user_detail.consecutive_zisui_count = consecutive_zisui_count
+
         context = {
            "user_detail":user_detail,
-           "post_list":post_list,
-           "post_record":post_record,
+    
         }
+        if len(post_record)>0:
+            context["post_record"] = post_record_list
+            context["post_list"] = post_list
 
         return render(request, "login/profile.html",context)
 

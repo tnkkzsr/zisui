@@ -46,7 +46,7 @@ class ZisuiPost(models.Model):
 
         author = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="投稿者", null=True)
 
-        created = models.DateTimeField("作成日",editable=True,blank=False,null=False, default=datetime.datetime.now(ZoneInfo("Asia/Tokyo")))
+        created = models.DateTimeField("作成日",editable=True,blank=False,null=False, default=datetime.date.today())
         
         
    

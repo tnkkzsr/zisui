@@ -14,7 +14,7 @@
         <p><img src="{{user_detail.userimage.url}}" style="width:400px;"/></p>
         <p>学年：{{user_detail.years}}</p>
         <p>一人暮らし歴：{{user_detail.living_alone}}</p>
-        <p>最後の投稿日：{{user_detail.recent_created_at}}</p>
+        <p>最後に自炊した日：{{user_detail.recent_created_at|date:"Y-m-d"}}</p>
 
 
         <h2>{{user_detail.username}}さんが投稿した自炊記事一覧</h2>
@@ -36,7 +36,7 @@
                                 <tr>
                                         <td>{{ post.title }}</td>
                                         <td><img src="{{post.image.url}}" style="width: 100px;"/></td>
-                                        <td>{{ post.created }}</td>
+                                        <td>{{ post.created|date:"Y-m-d" }}</td>
                                         <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
                                 </tr>
 
@@ -52,7 +52,7 @@
         <thead>
                 <tr>
                         <th>料理名</th>
-                        <th>日付</th>
+                        <th>自炊した日</th>
                 </tr>
         </thead>
         <tbody>
@@ -61,7 +61,7 @@
                                 <tr>
                                 <td>{{ post.title }}</td>
                                 
-                                <td>{{ post.created }}</td>
+                                <td>{{ post.created|date:"Y-m-d" }}</td>
                                 
                                 </tr>
                 
