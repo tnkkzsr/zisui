@@ -7,6 +7,8 @@
                 のための自炊習慣化アプリ
             </p>
             
+            <h3><a href="{% url 'login' %}">ログインして自炊記録を始める！</a></h3>
+
             <h2>みんなの投稿一覧</h2>
             <table class="table">
             <thead>
@@ -22,7 +24,7 @@
                     <td>{{ post.title }}</td>
                     <td><img src="{{post.image.url}}" style="width:100px;"/></td>
                     <td><a href="{% url 'user-detail' post.author.pk%}">{{ post.author }}</a></td>
-                    <td>{{ post.created }}</td>
+                    <td>{{ post.created|date:"Y-m-d" }}</td>
                     <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
                 </tr>
                 {% endfor %}

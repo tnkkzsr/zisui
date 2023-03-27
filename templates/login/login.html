@@ -11,5 +11,8 @@
             {% endfor %}
             <button type="submit">ログイン</button>{% csrf_token %}
         </form>
+
+        <h3><a href="{% url 'signup' %}">新規会員登録はこちら！</a><br></h3>
+            
         
     {% endblock %}
