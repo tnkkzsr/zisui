@@ -12,16 +12,19 @@ Class-based views
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+
 """
 from django.contrib import admin
 from django.urls import path,include
 from . views import IndexView
-
+from django.views.static import serve
+from . import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name="index"),
     path("", include("blog.urls")),
     path("", include("login.urls")),
+    #path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),  #追加
 
 
     

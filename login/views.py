@@ -16,6 +16,7 @@ from zoneinfo import ZoneInfo
 # Create your views here.
 
 
+
 class Login(LoginView):
     template_name = 'login/login.html'
     form_class = LoginForm 
@@ -36,9 +37,14 @@ class MypageView(LoginRequiredMixin,View):
         post_record_list =ZisuiPost.objects.filter(author__username=self.request.user.username).order_by("created") #作られのが早い順に並べたもの
         post_record =ZisuiPost.objects.filter(author__username=self.request.user.username).order_by("-created")#作られたのが遅い順に並べたもの
         post_list = ZisuiPost.objects.filter(author__username=self.request.user.username).exclude(image = "images/1087_01.jpg").order_by("created")
-      
+
+        #総自炊回数の更新
+        user.zisui_count = len(post_record)
 
         if len(post_record)>0:
+
+            
+
             #最後に自炊した日の取り出し
             recent_created_at = ZisuiPost.objects.values("created").filter(author__username = user.username).order_by("created").last()
             user.recent_created_at = recent_created_at["created"]
@@ -143,6 +149,9 @@ class UserListView(ListView):
 class UserDetailView(View):
 
     def get(self, request,*args, **kwargs):
+
+       
+        
         user_detail = User.objects.get(pk=self.kwargs['pk'])
         
         post_record_list =ZisuiPost.objects.filter(author__username=user_detail.username).order_by("created") #作られのが早い順に並べたもの
@@ -151,6 +160,9 @@ class UserDetailView(View):
 
         recent_created_at = ZisuiPost.objects.values("created").filter(author__username = user_detail.username).order_by("created").last()
         user_detail.recent_created_at = recent_created_at["created"]
+
+        #総自炊回数の更新
+        user_detail.zisui_count = len(post_record)
 
         #連続自炊日数処理
         if len(post_record)>1:

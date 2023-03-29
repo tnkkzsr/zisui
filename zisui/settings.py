@@ -40,7 +40,15 @@ INSTALLED_APPS = [
     'blog',
     'login',
     'django_bootstrap5',
+    'cloudinary_storage',
+    'cloudinary',
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dkaphqexh',
+    'API_KEY': '363729939383793',
+    'API_SECRET': '2Crrcn-MroitWkZ5s-9z7JdOpYw',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,8 +140,10 @@ STATIC_DIR = BASE_DIR / "static"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
 
 AUTH_USER_MODEL = 'login.User'
 
@@ -142,3 +152,5 @@ LOGIN_REDIRECT_URL = 'mypage'
 
 STATIC_URL = '/assets/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

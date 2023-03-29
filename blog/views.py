@@ -23,9 +23,7 @@ class PostCreateView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
      
     def get_success_url(self): 
-        post_user = self.request.user #自炊カウントを増やす処理
-        post_user.zisui_count +=1  
-        post_user.save()
+        
         return reverse('post-detail', kwargs={'pk': self.object.pk})
 
 
@@ -40,10 +38,6 @@ class ZisuiRecordView(LoginRequiredMixin,CreateView):
         return super().form_valid(form)
 
     def get_success_url(self): 
-        post_user = self.request.user #自炊カウントを増やす処理
-        post_user.zisui_count +=1  
-        post_user.save()
-
         return reverse('mypage')
 
     
@@ -80,11 +74,7 @@ class PostDeleteView(LoginRequiredMixin,DeleteView):
     template_name ="blog/delete.html"
 
     def get_success_url(self): 
-        post_user = self.request.user
-        post_user.zisui_count -=1
-        recent_created_at = ZisuiPost.objects.values("created").filter(author__username = post_user.username).order_by("created").last()
-        post_user.recent_created_at = recent_created_at["created"]
-        post_user.save()
+        
 
         
         return reverse('mypage')
