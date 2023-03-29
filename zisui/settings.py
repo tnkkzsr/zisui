@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazuhiroTanaka.pythonanywhere.com']
 
 CSRF_COOKIE_SECURE = True
@@ -51,7 +51,10 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkaphqexh',
     'API_KEY': '363729939383793',
     'API_SECRET': '2Crrcn-MroitWkZ5s-9z7JdOpYw',
+    'API_PROXY': 'http://proxy.server:3128'
 }
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -161,7 +164,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()  
 
-# try:
-#     from .local_settings import *
-# except:
-#     pass
+try:
+    from .local_settings import *
+except:
+    pass
