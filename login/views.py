@@ -43,8 +43,6 @@ class MypageView(LoginRequiredMixin,View):
 
         if len(post_record)>0:
 
-            
-
             #最後に自炊した日の取り出し
             recent_created_at = ZisuiPost.objects.values("created").filter(author__username = user.username).order_by("created").last()
             user.recent_created_at = recent_created_at["created"]
@@ -52,11 +50,13 @@ class MypageView(LoginRequiredMixin,View):
 
         if len(post_record)>1:
             #連続自炊日数処理
-            now = make_aware(datetime.datetime.now())
-            today =datetime.date.today().day-1
+            today = datetime.date.today()
+           
+    
             print(today)
-        
-            td = today - recent_created_at['created'].day #現在の時間と最後に自炊した日の差分
+            
+            td = today- recent_created_at['created'] #現在の時間と最後に自炊した日の差分
+            td = td.days
             print("現在と最後に自炊した日の差分",td)
             
             new_post_date = post_record[0].created#最後に自炊記録を記録した日
@@ -69,13 +69,14 @@ class MypageView(LoginRequiredMixin,View):
                 for post in post_record:
                     print("取り出した投稿",post,post.created)
                     if count !=0:
-                        td_post = new_post_date.day - post.created.day
+                        td_post = new_post_date - post.created
+                        td_post = td_post.days
                         print("時差",td_post)
                         if td_post ==1:
                             consecutive_zisui_count  +=1
                             print("連続自炊日数追加")
                         elif td_post >=2:
-                            print("連続ならないから終了")
+                            print("連続にならないから終了")
                             break
 
                         elif count == 0:
@@ -166,8 +167,9 @@ class UserDetailView(View):
 
         #連続自炊日数処理
         if len(post_record)>1:
-            now= make_aware(datetime.datetime.now())
-            today =datetime.date.today().day-1
+            now = datetime.date.today()
+            print(now)
+            today =now.day-1
             print(today)
         
             td = today - recent_created_at['created'].day #現在の時間と最後に自炊した日の差分
