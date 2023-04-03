@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazuhiroTanaka.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
+# ALLOWED_HOSTS = ['*']
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
@@ -168,3 +169,4 @@ try:
     from .local_settings import *
 except:
     pass
+
