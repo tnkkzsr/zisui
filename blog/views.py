@@ -47,9 +47,15 @@ class ZisuiRecordView(LoginRequiredMixin,CreateView):
 
 #投稿一覧ページに対するビュー
 class PostListView(ListView):
-    model = ZisuiPost
-    context_object_name = "post_list"
-    template_name = "blog/post_list.html"
+    def get(self, request,*args, **kwargs):
+        post_list = ZisuiPost.objects.exclude(image = "images/1087_01.jpg").order_by("created")
+        context = {
+                    "post_list":post_list,
+                }
+        return render(request, "blog/post_list.html",context)
+
+            
+    
 
 #投稿詳細（編集不可）のページに飛ぶビュー
 class PostDetailView(DetailView):

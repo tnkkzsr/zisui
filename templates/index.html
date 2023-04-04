@@ -2,37 +2,52 @@
 {% load static %}
 
     {% block main %}
-            <p>なかなか自炊を継続することが難しい大学生<br>
-                自炊をこれから始めようという大学生,<br>
-                節約のためには自炊が必要だと言う大学生<br>
-                のための自炊習慣化アプリ
+
+    <div class="text-center">
+            <p >大学生のための自炊習慣化アプリ<br>
+                自分が自炊した事実を記録し、投稿してみんなに共有しましょう<br>
+                あなたの自炊履歴を作成し、通算自炊回数や連続自炊回数を記録します
             </p>
 
-            <img src="" alt="">
             
-            <h3><a href="{% url 'login' %}">ログインして自炊記録を始める！</a></h3>
+            
+            <h3><a href = "{% url 'mypage' %}" type="button" class="btn btn-outline-primary btn-block">自炊記録を始める！</a>
 
+     </div>
+            <p> </p>
             <h2>みんなの投稿一覧</h2>
-            <table class="table">
-            <thead>
+            
+            <!-- <thead>
                 <tr><th>料理名</th>
                     <th>画像</th>
                     <th>投稿者</th>
                     <th>投稿日</th>
                 </tr>
-            </thead>
-            <tbody>
+            </thead> -->
+            <div class="container">
+                <div class="row"> 
                 {% for post in post_list %}
-                <tr>
+                
+                <div class="col-3 card" style="width: 18rem;">
+                    <img src="{{post.image.url}}" alt="カードの画像" class="card-img-top">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ post.title }}</h5>
+                      <p class="card-text"><a href="{% url 'user-detail' post.author.pk%}">{{ post.author }} </a>　　　　{{ post.created|date:"Y-m-d" }}</p>
+                      <a href="{% url 'post-detail' post.pk%}" class="btn btn-primary">詳細</a>
+                    </div>
+                </div>
+                
+                <!-- <tr>
                     <td>{{ post.title }}</td>
                     <td><img src="{{post.image.url}}" style="width:100px;"/></td>
                     <td><a href="{% url 'user-detail' post.author.pk%}">{{ post.author }}</a></td>
                     <td>{{ post.created|date:"Y-m-d" }}</td>
                     <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
-                </tr>
+                </tr> -->
                 {% endfor %}
-            </tbody>
-            </table>
+                </div>
+            </div>
+            
 
            
             

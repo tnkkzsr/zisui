@@ -17,6 +17,31 @@
         <p>最後に自炊した日：{{user_detail.recent_created_at|date:"Y-m-d"}}</p>
 
 
+        <h2>{{user_detail.username}}さんの自炊履歴</h2>
+
+
+        <table class="table">
+        <thead>
+                <tr>
+                        <th>料理名</th>
+                        <th>自炊した日</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for post in post_record %}
+                
+                                <tr>
+                                <td>{{ post.title }}</td>
+                                
+                                <td>{{ post.created|date:"Y-m-d" }}</td>
+                                
+                                </tr>
+                
+
+                
+                {% endfor %}
+        </tbody>
+        </table>
         <h2>{{user_detail.username}}さんが投稿した自炊記事一覧</h2>
 
         <table class="table">
@@ -45,31 +70,7 @@
                 </tbody>
         </table>
         
-        <h2>{{user_detail.username}}さんの自炊履歴</h2>
-
-
-        <table class="table">
-        <thead>
-                <tr>
-                        <th>料理名</th>
-                        <th>自炊した日</th>
-                </tr>
-        </thead>
-        <tbody>
-                {% for post in post_record %}
-                
-                                <tr>
-                                <td>{{ post.title }}</td>
-                                
-                                <td>{{ post.created|date:"Y-m-d" }}</td>
-                                
-                                </tr>
-                
-
-                
-                {% endfor %}
-        </tbody>
-        </table>
+        
 
         
 

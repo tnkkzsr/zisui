@@ -8,8 +8,12 @@
     <div>
         <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">登録</button>
+        {% for field in form %}
+            <label>{{ field.label }}</label>
+            <p>{{field}}</p>
+
+            {% endfor %}
+        <button type="submit" class="btn btn-outline-info btn-block">登録</button>
         </form>
     </div>
 </body>
