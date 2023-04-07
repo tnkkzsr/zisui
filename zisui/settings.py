@@ -25,11 +25,11 @@ SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-#ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
+# ALLOWED_HOSTS = ['*']
 
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 
 # Application definition
@@ -55,6 +55,8 @@ CLOUDINARY_STORAGE = {
 
 }
 
+
+CLOUDINARY_URL= "cloudinary://363729939383793:2Crrcn-MroitWkZ5s-9z7JdOpYw@dkaphqexh"
 
 
 MIDDLEWARE = [
@@ -145,6 +147,8 @@ STATIC_DIR = BASE_DIR / "static"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
@@ -152,16 +156,22 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+
 AUTH_USER_MODEL = 'login.User'
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'post'
+LOGIN_REDIRECT_URL = 'mypage'
 
 STATIC_URL = '/assets/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# from django.core.management.utils import get_random_secret_key
-# SECRET_KEY = get_random_secret_key()  
+from django.core.management.utils import get_random_secret_key
+SECRET_KEY = get_random_secret_key()  
+
+try:
+    from .settings import *
+except:
+    pass
 

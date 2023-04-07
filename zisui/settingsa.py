@@ -25,11 +25,11 @@ SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
-# ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 
 
 # Application definition
@@ -155,18 +155,13 @@ MEDIA_URL = '/media/'
 AUTH_USER_MODEL = 'login.User'
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'mypage'
+LOGIN_REDIRECT_URL = 'post'
 
 STATIC_URL = '/assets/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-from django.core.management.utils import get_random_secret_key
-SECRET_KEY = get_random_secret_key()  
-
-try:
-    from .setting import *
-except:
-    pass
+# from django.core.management.utils import get_random_secret_key
+# SECRET_KEY = get_random_secret_key()  
 

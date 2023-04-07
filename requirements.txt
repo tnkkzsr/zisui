@@ -3,3 +3,4 @@ whitenoise
 gunicorn
 django-cloudinary-storage
 Pillow    
+cloudinary
