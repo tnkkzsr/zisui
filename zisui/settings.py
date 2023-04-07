@@ -52,7 +52,7 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkaphqexh',
     'API_KEY': '363729939383793',
     'API_SECRET': '2Crrcn-MroitWkZ5s-9z7JdOpYw',
-    'API_PROXY': 'http://proxy.server:3128',
+    'API_PROXY': 'https://proxy.server:3128',
 
 }
 
