@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 #ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
 ALLOWED_HOSTS = ['*']
 
@@ -41,18 +41,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'login',
     
     'cloudinary_storage',
     'cloudinary',
+    'blog',
+    'login',
 ]
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkaphqexh',
     'API_KEY': '363729939383793',
     'API_SECRET': '2Crrcn-MroitWkZ5s-9z7JdOpYw',
-    'API_PROXY': 'http://proxy.server:3128',
+    
 
 }
 

@@ -28,7 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
 # ALLOWED_HOSTS = ['*']
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = True
 
 
@@ -41,11 +41,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'login',
+   
     
     'cloudinary_storage',
     'cloudinary',
+    'blog',
+    'login',
 ]
 
 CLOUDINARY_STORAGE = {
@@ -171,7 +172,7 @@ from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()  
 
 try:
-    from .settings import *
+    from .setting import *
 except:
     pass
 
