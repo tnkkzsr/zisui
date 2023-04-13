@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-   
-    
     'cloudinary_storage',
     'cloudinary',
     'blog',
@@ -53,7 +51,7 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkaphqexh',
     'API_KEY': '363729939383793',
     'API_SECRET': '2Crrcn-MroitWkZ5s-9z7JdOpYw',
-    'API_PROXY': 'https://proxy.server:3128',
+    
 
 }
 
@@ -152,7 +150,7 @@ STATIC_DIR = BASE_DIR / "static"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
