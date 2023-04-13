@@ -13,15 +13,7 @@ urlpatterns = [
     path('signup/',Signup.as_view(), name= "signup"),
     path('user-update/<int:pk>/',UserUpdateView.as_view(), name= "user-update"),
     path('password-update/<int:pk>/',PasswordUpdateView.as_view(), name= "password-update"),
-    
     path('user-list/', UserListView.as_view(), name="user-list"),
-    
     path('user-detail/<int:pk>/',UserDetailView.as_view(), name= "user-detail"),
-    
-    
-
-
-    
-   
   
 ]

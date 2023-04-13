@@ -7,7 +7,7 @@ from django.urls import reverse
 
 class brogTestCase(TestCase):
     def setUp(self):
-        obj = ZisuiPost(title="kawaratani")
+        obj = ZisuiPost(title="yakiniku")
         obj.save()
 
     def test_saved_single_object(self):

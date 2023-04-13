@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
+    
     'blog',
     'login',
+    
 ]
 
 CLOUDINARY_STORAGE = {
@@ -54,6 +56,8 @@ CLOUDINARY_STORAGE = {
     
 
 }
+
+
 
 
 
@@ -150,7 +154,7 @@ STATIC_DIR = BASE_DIR / "static"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.RawMediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -169,8 +173,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 from django.core.management.utils import get_random_secret_key
 SECRET_KEY = get_random_secret_key()  
 
-try:
-    from .setting import *
-except:
-    pass
+# try:
+#     from .settings import *
+# except:
+#     pass
 
