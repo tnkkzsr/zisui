@@ -1,4 +1,3 @@
 django
 gunicorn
 whitenoise
-cloudinary_storage
