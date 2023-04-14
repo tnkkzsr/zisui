@@ -21,15 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
+#SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
-# ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
 
 
 # Application definition
@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
-    
     'blog',
     'login',
     
@@ -53,12 +52,7 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dkaphqexh',
     'API_KEY': '363729939383793',
     'API_SECRET': '2Crrcn-MroitWkZ5s-9z7JdOpYw',
-    
-
 }
-
-
-
 
 
 
@@ -142,15 +136,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
-
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_DIR = BASE_DIR / "static"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
-
-
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -159,22 +149,32 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
-
 AUTH_USER_MODEL = 'login.User'
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'mypage'
+LOGIN_REDIRECT_URL = 'post'
 
-STATIC_URL = '/assets/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-from django.core.management.utils import get_random_secret_key
-SECRET_KEY = get_random_secret_key()  
+# from django.core.management.utils import get_random_secret_key
+# SECRET_KEY = get_random_secret_key()  
 
-# try:
-#     from .settings import *
-# except:
-#     pass
+#Heroku database
+import dj_database_url
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=600,
+ssl_require=True)
+DATABASES['default'].update(db_from_env)
+try:
+ from . import *
+except ImportError:
+ pass
+if not DEBUG:
+ SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j' #削除したSECRET_KEYをコピペします
 
+import django_heroku
+django_heroku.settings(locals())
