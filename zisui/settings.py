@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
+SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -163,18 +163,3 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # SECRET_KEY = get_random_secret_key()  
 
 #Heroku database
-import dj_database_url
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
-db_from_env = dj_database_url.config(conn_max_age=600,
-ssl_require=True)
-DATABASES['default'].update(db_from_env)
-try:
- from . import *
-except ImportError:
- pass
-if not DEBUG:
- SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j' #削除したSECRET_KEYをコピペします
-
-import django_heroku
-django_heroku.settings(locals())
