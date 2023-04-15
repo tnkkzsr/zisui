@@ -92,8 +92,8 @@
 
         
 
-        <p><a href="{% url 'index' %}">トップページへ</a></p>
-        <p><a href="{% url 'post-list' %}">記事一覧</a></p>
-        <p><a href="{% url 'post' %}">投稿する</a></p>
-        <p><a href="{% url 'logout' %}">ログアウト</a></p>
+        <p><a class="btn btn-outline-primary btn-block" href="{% url 'index' %}">トップページへ</a></p>
+        
+       
+        <p><a class="btn btn-danger btn-block" href="{% url 'logout' %}">ログアウト</a></p>
 {% endblock %}
