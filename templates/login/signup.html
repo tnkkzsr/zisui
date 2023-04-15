@@ -7,13 +7,16 @@
     <h1>新規会員登録をして自炊記録を開始する</h1>
     <div>
         <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+        
         {% for field in form %}
             <label>{{ field.label }}</label>
             <p>{{field}}</p>
 
             {% endfor %}
-        <button type="submit" class="btn btn-outline-info btn-block">登録</button>
+
+            {% csrf_token %}
+        
+            <input type="submit" value="編集する">
         </form>
     </div>
 </body>
