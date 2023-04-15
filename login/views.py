@@ -166,35 +166,46 @@ class UserDetailView(View):
         user_detail.zisui_count = len(post_record)
 
         #連続自炊日数処理
+        if len(post_record)>0:
+    
+            #最後に自炊した日の取り出し
+            recent_created_at = ZisuiPost.objects.values("created").filter(author__username = user_detail.username).order_by("created").last()
+            user_detail.recent_created_at = recent_created_at["created"]
+            print("最後に自炊した日",user_detail.recent_created_at)
+
         if len(post_record)>1:
-            now = datetime.date.today()
-            print(now)
-            today =now.day-1
+            #連続自炊日数処理
+            today = datetime.date.today()
+           
+    
             print(today)
-        
-            td = today - recent_created_at['created'].day #現在の時間と最後に自炊した日の差分
+            
+            td = today- recent_created_at['created'] #現在の時間と最後に自炊した日の差分
+            td = td.days
             print("現在と最後に自炊した日の差分",td)
             
             new_post_date = post_record[0].created#最後に自炊記録を記録した日
-            
             if td >=2:
                 user_detail.consecutive_zisui_count =0
-            elif new_post_date.day - post_record[1].created.day >1:
-                print(new_post_date.day - post_record[1].created.day)
-                user_detail.consecutive_zisui_count =0
+            
             else:  
                 count = 0
                 consecutive_zisui_count =0
                 for post in post_record:
                     print("取り出した投稿",post,post.created)
                     if count !=0:
-                        td_post = new_post_date.day - post.created.day
+                        td_post = new_post_date - post.created
+                        td_post = td_post.days
                         print("時差",td_post)
                         if td_post ==1:
                             consecutive_zisui_count  +=1
                             print("連続自炊日数追加")
-                    elif count == 0:
-                        print("比較なし")
+                        elif td_post >=2:
+                            print("連続にならないから終了")
+                            break
+
+                        elif count == 0:
+                            print("比較なし")
                         
                     new_post_date = post.created
                     print(str(count)+"番目の最後の記録日:",new_post_date)
@@ -206,6 +217,8 @@ class UserDetailView(View):
                     consecutive_zisui_count +=1
 
                 user_detail.consecutive_zisui_count = consecutive_zisui_count
+        else:
+            print("投稿がありません")
 
         context = {
            "user_detail":user_detail,

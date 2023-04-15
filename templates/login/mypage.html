@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block main %}
-        <h1>Mypage of {{logined_user.username}}</h1>
+        <h1>{{logined_user.username}}さんのマイページ</h1>
         
                 <div class="card bg-white ">
                         <h2>　通算自炊回数：{{logined_user.zisui_count}}回</h2>
