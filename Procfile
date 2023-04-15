@@ -1,1 +1,1 @@
-web: gunicorn zisuiapp.wsgi
+web: gunicorn zisui.wsgi
