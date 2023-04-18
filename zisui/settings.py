@@ -101,14 +101,18 @@ WSGI_APPLICATION = 'zisui.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',#PostgreSQL使いますよ宣言
-        'NAME': 'zisui_db', # データベース名
-        'USER': 'tanakakazushiro', # データベースに接続するユーザー名
-        'PASSWORD': '30125146', # データベースに接続する際のパスワード
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'd3pdeju90jir8j', # データベース名
+        'USER': 'fdnzxqddcjvvgy', # データベースに接続するユーザー名
+        'PASSWORD': '32cb5ae0cbfa288d4cd5682d38e33d2b51f6e2d4161dbf9bd96bba05eedefb98', # データベースに接続する際のパスワード
+        'HOST': 'ec2-52-205-45-222.compute-1.amazonaws.com',
+        'PORT': '5432',
+        
     }
 }
+import dj_database_url
 
+db_from_env = dj_database_url.config(conn_max_age=600, ssl_redquire=True)
+DATABASES['default'].update(db_from_env)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.sqlite3',
