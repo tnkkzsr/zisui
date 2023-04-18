@@ -11,7 +11,7 @@
         
         <h4>プロフィール情報</h4>
         
-        <p><img src="{{user_detail.userimage.url}}" style="width:400px;"/></p>
+        <p><img src="{{user_detail.userimage.url}}" style="width:200px;"/></p>
         <p>学年：{{user_detail.years}}</p>
         <p>一人暮らし歴：{{user_detail.living_alone}}</p>
         <p>最後に自炊した日：{{user_detail.recent_created_at|date:"Y-m-d"}}</p>
@@ -75,5 +75,5 @@
         
 
         <p><a class="btn btn-outline-primary btn-block" href="{% url 'index' %}">トップページへ</a></p>
-        <p><a class="btn btn-danger btn-block" href="{% url 'logout' %}">ログアウト</a></p>
+        <p><a class="btn btn-danger btn-block" href="{% url 'mypage' %}">マイページへ</a></p>
 {% endblock %}
