@@ -27,7 +27,7 @@ IS_HEROKU = "DYNO" in os.environ
 SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 #ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
 ALLOWED_HOSTS = ['*']
 
@@ -96,12 +96,26 @@ WSGI_APPLICATION = 'zisui.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',#PostgreSQL使いますよ宣言
+        'NAME': 'zisui_db', # データベース名
+        'USER': 'tanakakazushiro', # データベースに接続するユーザー名
+        'PASSWORD': '30125146', # データベースに接続する際のパスワード
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 
 
 # Password validation

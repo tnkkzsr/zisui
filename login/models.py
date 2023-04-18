@@ -31,6 +31,7 @@ Livingalonechoice = [
 
 ]
 
+
 #独自のユーザーモデルを定義
 class User(AbstractBaseUser):
     
@@ -49,7 +50,7 @@ class User(AbstractBaseUser):
 
     
     USERNAME_FIELD = 'email'
-
+   
     objects = UserManager()
     
     
