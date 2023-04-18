@@ -14,26 +14,18 @@ from pathlib import Path
 import os
 from django.test.runner import DiscoverRunner
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 IS_HEROKU = "DYNO" in os.environ
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING:
 SECRET_KEY = 'django-insecure-7jd#0jl24%77#w=&(jg28)bn_b+w*@ihmv%4sp$8ill91ml16j'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: 
 DEBUG = False
-#ALLOWED_HOSTS = ['localhost', '.pythonanywhere.com', 'KazushiroTanaka.pythonanywhere.com']
 ALLOWED_HOSTS = ['*']
-
-# CSRF_COOKIE_SECURE = True
-# SESSION_COOKIE_SECURE = True
-
 
 # Application definition
 
@@ -94,21 +86,8 @@ WSGI_APPLICATION = 'zisui.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',#PostgreSQL使いますよ宣言
-#         'NAME': 'd3pdeju90jir8j', # データベース名
-#         'USER': 'fdnzxqddcjvvgy', # データベースに接続するユーザー名
-#         'PASSWORD': '32cb5ae0cbfa288d4cd5682d38e33d2b51f6e2d4161dbf9bd96bba05eedefb98', # データベースに接続する際のパスワード
-#         'HOST': 'ec2-52-205-45-222.compute-1.amazonaws.com',
-#         'PORT': '5432',
-        
-#     }
-# }
+    
 import dj_database_url
 from dotenv import (
     find_dotenv,
@@ -119,14 +98,6 @@ DATABASES = {
     'default': dj_database_url.config(conn_max_age=600),
 }
 
-# db_from_env = dj_database_url.config(conn_max_age=600, ssl_redquire=True)
-# DATABASES['default'].update(db_from_env)
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 
 
