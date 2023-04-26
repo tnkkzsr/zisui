@@ -7,14 +7,12 @@ from .forms import SignUpForm,UserUpdateForm,PassowordUpdateForm
 from django.urls import reverse_lazy,reverse
 from .models import User
 from blog.models import ZisuiPost
-from django.utils.timezone import make_aware
 import datetime
-from zoneinfo import ZoneInfo
+
 
 
 
 # Create your views here.
-
 
 
 class Login(LoginView):

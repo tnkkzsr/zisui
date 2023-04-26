@@ -24,7 +24,7 @@ urlpatterns = [
     path('', IndexView.as_view(), name="index"),
     path("", include("blog.urls")),
     path("", include("login.urls")),
-    #path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),  #追加
+
 
 
     

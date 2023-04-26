@@ -35,22 +35,13 @@ class Tag(models.Model):
 class ZisuiPost(models.Model):
 
         title = models.CharField('料理名', max_length=100) 
-
         image = models.ImageField('画像',upload_to="images/",default="images/1087_01.jpg")
-
         tag = models.ManyToManyField(Tag,verbose_name="タグ",blank=False,null=False)
-
         cost = models.CharField("費用", choices=Cost_choices,max_length=20)
-
         freetext = models.TextField('説明',default="" ,blank = True, null = True)
-
         author = models.ForeignKey(User, on_delete=models.SET_NULL, verbose_name="投稿者", null=True)
-
         created = models.DateField("作成日",editable=True,blank=False,null=False, default=datetime.date.today())
-        
-        
    
-
         def __str__(self):
     	    return self.title
 

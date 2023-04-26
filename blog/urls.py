@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from blog import views
 
@@ -11,7 +10,5 @@ urlpatterns = [
     path('post-update/<int:pk>/', views.PostUpdateView.as_view(), name="post-update"),
     path('delete/<int:pk>/', views.PostDeleteView.as_view(), name="post-delete"),
     path('post-done',views.ZisuiRecordView.as_view(), name = "post-done"),
-   
 
-    
 ]

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path,include
 from .views import Login,Louout,MypageView,Signup,UserUpdateView,PasswordUpdateView,UserListView,UserDetailView
-from . import views
+
 
 
 

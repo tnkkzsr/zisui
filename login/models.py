@@ -1,10 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser,UserManager
-from django.utils import timezone
+from django.contrib.auth.models import AbstractBaseUser,UserManager
 import datetime
-
-
-
 
 Gradechoices = [
     
@@ -76,5 +72,4 @@ class User(AbstractBaseUser):
     def is_active(self):
         return self.active
 
-    from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+   

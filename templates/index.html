@@ -16,14 +16,6 @@
      </div>
             <p> </p>
             <h2>みんなの投稿一覧</h2>
-            
-            <!-- <thead>
-                <tr><th>料理名</th>
-                    <th>画像</th>
-                    <th>投稿者</th>
-                    <th>投稿日</th>
-                </tr>
-            </thead> -->
             <div class="container">
                 <div class="row"> 
                 {% for post in post_list %}
@@ -37,13 +29,7 @@
                     </div>
                 </div>
                 
-                <!-- <tr>
-                    <td>{{ post.title }}</td>
-                    <td><img src="{{post.image.url}}" style="width:100px;"/></td>
-                    <td><a href="{% url 'user-detail' post.author.pk%}">{{ post.author }}</a></td>
-                    <td>{{ post.created|date:"Y-m-d" }}</td>
-                    <td><a href="{% url 'post-detail' post.pk%}">詳細</a></td>
-                </tr> -->
+        
                 {% endfor %}
                 </div>
             </div>

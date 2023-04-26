@@ -5,10 +5,6 @@ from login.models import User
 from .forms import PostForm,EasyPostForm
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from datetime import timezone
-import datetime
-#from django.utils.timezone import make_aware
-from zoneinfo import ZoneInfo
 
 
 #投稿を作成するためのビュー
@@ -40,9 +36,6 @@ class ZisuiRecordView(LoginRequiredMixin,CreateView):
     def get_success_url(self): 
         return reverse('mypage')
 
-    
-
-
 
 
 #投稿一覧ページに対するビュー
@@ -54,8 +47,6 @@ class PostListView(ListView):
                 }
         return render(request, "blog/post_list.html",context)
 
-            
-    
 
 #投稿詳細（編集不可）のページに飛ぶビュー
 class PostDetailView(DetailView):
@@ -80,12 +71,8 @@ class PostDeleteView(LoginRequiredMixin,DeleteView):
     template_name ="blog/delete.html"
 
     def get_success_url(self): 
-        
-
-        
         return reverse('mypage')
 
-    # success_url = reverse_lazy("mypage")
 
 #投稿詳細（編集可能）に飛ぶビュー
 class MyPostDetailView(DetailView):
