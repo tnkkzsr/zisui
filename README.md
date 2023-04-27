@@ -27,3 +27,4 @@ URL:https://zisui.herokuapp.com/
 ## 主な使用技術
 ・フレームワーク：Django<br>
 ・データベース：PostgreSQL
+
