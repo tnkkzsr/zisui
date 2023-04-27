@@ -70,7 +70,7 @@
                 <tr><th>料理名</th>
                         <th>画像</th>
                 <th>投稿者</th>
-                <th>詳細</th>
+                
                 </tr>
         </thead>
         <tbody>
@@ -78,10 +78,10 @@
         {% for post in post_list %}
                
                         <tr>
-                        <td>{{ post.title }}</td>
+                        <td><a href="{% url 'mypost-detail' post.pk%}">{{ post.title }}</a></td>
                         <td><img src="{{post.image.url}}" style="width: 100px;"/></td>
                         <td>{{ post.author }}</td>
-                        <td><a href="{% url 'mypost-detail' post.pk%}">詳細</a></td>
+                        
                         </tr>
                
 
