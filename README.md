@@ -28,4 +28,4 @@ topページで他のユーザーの自炊記録が確認できます。<br>
 フレームワーク：Django<br>
 データベース：PostgreSQL<br>
 サーバ：heroku<br>
-
+  
