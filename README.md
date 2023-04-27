@@ -25,7 +25,7 @@ topページで他のユーザーの自炊記録が確認できます。<br>
 気軽に使えるように工夫しました。
 
 ## 主に使用した技術
-フレームワーク：Django
-データベース：PostgreSQL
-サーバ：heroku
+フレームワーク：Django<br>
+データベース：PostgreSQL<br>
+サーバ：heroku<br>
 
