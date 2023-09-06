@@ -34,11 +34,10 @@ class MypageView(LoginRequiredMixin,View):
         
         #ユーザーの投稿一覧を取得
         all_record_list,post_with_image_list = get_user_posts(user)
-        
+
         #総自炊回数の更新
         user.zisui_count = all_record_list.count()
         user.save()
-        
 
         if len(all_record_list)>0:
             recent_created_at = all_record_list.last().created
