@@ -27,7 +27,11 @@ Livingalonechoice = [
 
 ]
 class CustomUserManager(UserManager):
-    def create_superuser(self, email, username, password=None, **extra_fields):
+    def create_superuser(self, email, username=None, password=None, **extra_fields):
+
+        if username is None:
+            username = email
+
         extra_fields.setdefault('staff', True)
         extra_fields.setdefault('admin', True)
         
