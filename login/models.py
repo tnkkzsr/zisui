@@ -26,6 +26,17 @@ Livingalonechoice = [
     ("7年以上", "7年以上"),
 
 ]
+class CustomUserManager(UserManager):
+    def create_superuser(self, email, username, password=None, **extra_fields):
+        extra_fields.setdefault('staff', True)
+        extra_fields.setdefault('admin', True)
+        
+        if extra_fields.get('staff') is not True:
+            raise ValueError('Superuser must have staff=True.')
+        if extra_fields.get('admin') is not True:
+            raise ValueError('Superuser must have admin=True.')
+        
+        return self._create_user(email, username, password, **extra_fields)
 
 
 #独自のユーザーモデルを定義
@@ -47,7 +58,7 @@ class User(AbstractBaseUser):
     
     USERNAME_FIELD = 'email'
    
-    objects = UserManager()
+    objects = CustomUserManager()
     
     
     def __str__(self):             
