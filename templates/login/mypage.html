@@ -48,13 +48,13 @@
                         </tr>
                 </thead>
                 <tbody>
-                        {% for post in post_record %}
+                        {% for record in record_list %}
                         
                                         <tr>
-                                        <td>{{ post.title }}</td>
+                                        <td>{{ record.title }}</td>
                                         
-                                        <td>{{ post.created|date:"Y-m-d"  }}</td>
-                                        <td><a class= "btn btn-danger" href="{% url 'post-delete' post.pk%}">削除</a></td>
+                                        <td>{{ record.created|date:"Y-m-d"  }}</td>
+                                        <td><a class= "btn btn-danger" href="{% url 'post-delete' record.pk%}">削除</a></td>
                                         </tr>
                         
 

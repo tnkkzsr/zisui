@@ -154,3 +154,7 @@ AUTH_USER_MODEL = 'login.User'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'mypage'
 
+try:
+    from .local_settings import *
+except ImportError:
+    pass
